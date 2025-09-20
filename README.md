@@ -158,7 +158,7 @@ npm run build
 npm run test
 ```
 
-## Docker
+## Docker (not implemented)
 
 The frontend is containerized and can be run with Docker:
 
