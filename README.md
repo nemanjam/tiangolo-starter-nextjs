@@ -1,239 +1,173 @@
-# Full Stack FastAPI Template
+# FastAPI Project - Frontend (Next.js)
 
-<a href="https://github.com/fastapi/full-stack-fastapi-template/actions?query=workflow%3ATest" target="_blank"><img src="https://github.com/fastapi/full-stack-fastapi-template/workflows/Test/badge.svg" alt="Test"></a>
-<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/fastapi/full-stack-fastapi-template" target="_blank"><img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/full-stack-fastapi-template.svg" alt="Coverage"></a>
+The frontend is built with [Next.js 15](https://nextjs.org/), [React](https://reactjs.org/), [TypeScript](https://www.typescriptlang.org/), [TanStack Query](https://tanstack.com/query), [Tailwind CSS](https://tailwindcss.com/), and [shadcn/ui](https://ui.shadcn.com/).
 
-## Technology Stack and Features
+## Frontend development
 
-- ⚡ [**FastAPI**](https://fastapi.tiangolo.com) for the Python backend API.
-    - 🧰 [SQLModel](https://sqlmodel.tiangolo.com) for the Python SQL database interactions (ORM).
-    - 🔍 [Pydantic](https://docs.pydantic.dev), used by FastAPI, for the data validation and settings management.
-    - 💾 [PostgreSQL](https://www.postgresql.org) as the SQL database.
-- 🚀 [React](https://react.dev) for the frontend.
-    - 💃 Using TypeScript, hooks, Vite, and other parts of a modern frontend stack.
-    - 🎨 [Chakra UI](https://chakra-ui.com) for the frontend components.
-    - 🤖 An automatically generated frontend client.
-    - 🧪 [Playwright](https://playwright.dev) for End-to-End testing.
-    - 🦇 Dark mode support.
-- 🐋 [Docker Compose](https://www.docker.com) for development and production.
-- 🔒 Secure password hashing by default.
-- 🔑 JWT (JSON Web Token) authentication.
-- 📫 Email based password recovery.
-- ✅ Tests with [Pytest](https://pytest.org).
-- 📞 [Traefik](https://traefik.io) as a reverse proxy / load balancer.
-- 🚢 Deployment instructions using Docker Compose, including how to set up a frontend Traefik proxy to handle automatic HTTPS certificates.
-- 🏭 CI (continuous integration) and CD (continuous deployment) based on GitHub Actions.
+Before you begin, ensure that you have either the Node Version Manager (nvm) or Fast Node Manager (fnm) installed on your system.
 
-### Dashboard Login
+* To install fnm follow the [official fnm guide](https://github.com/Schniz/fnm#installation). If you prefer nvm, you can install it using the [official nvm guide](https://github.com/nvm-sh/nvm#installing-and-updating).
 
-[![API docs](img/login.png)](https://github.com/fastapi/full-stack-fastapi-template)
-
-### Dashboard - Admin
-
-[![API docs](img/dashboard.png)](https://github.com/fastapi/full-stack-fastapi-template)
-
-### Dashboard - Create User
-
-[![API docs](img/dashboard-create.png)](https://github.com/fastapi/full-stack-fastapi-template)
-
-### Dashboard - Items
-
-[![API docs](img/dashboard-items.png)](https://github.com/fastapi/full-stack-fastapi-template)
-
-### Dashboard - User Settings
-
-[![API docs](img/dashboard-user-settings.png)](https://github.com/fastapi/full-stack-fastapi-template)
-
-### Dashboard - Dark Mode
-
-[![API docs](img/dashboard-dark.png)](https://github.com/fastapi/full-stack-fastapi-template)
-
-### Interactive API Documentation
-
-[![API docs](img/docs.png)](https://github.com/fastapi/full-stack-fastapi-template)
-
-## How To Use It
-
-You can **just fork or clone** this repository and use it as is.
-
-✨ It just works. ✨
-
-### How to Use a Private Repository
-
-If you want to have a private repository, GitHub won't allow you to simply fork it as it doesn't allow changing the visibility of forks.
-
-But you can do the following:
-
-- Create a new GitHub repo, for example `my-full-stack`.
-- Clone this repository manually, set the name with the name of the project you want to use, for example `my-full-stack`:
+* After installing either nvm or fnm, proceed to the `frontend-nextjs` directory:
 
 ```bash
-git clone git@github.com:fastapi/full-stack-fastapi-template.git my-full-stack
+cd frontend-nextjs
 ```
-
-- Enter into the new directory:
+* If the Node.js version specified in the `.nvmrc` file isn't installed on your system, you can install it using the appropriate command:
 
 ```bash
-cd my-full-stack
+# If using fnm
+fnm install
+
+# If using nvm
+nvm install
 ```
 
-- Set the new origin to your new repository, copy it from the GitHub interface, for example:
+* Once the installation is complete, switch to the installed version:
 
 ```bash
-git remote set-url origin git@github.com:octocat/my-full-stack.git
+# If using fnm
+fnm use
+
+# If using nvm
+nvm use
 ```
 
-- Add this repo as another "remote" to allow you to get updates later:
+* Within the `frontend-nextjs` directory, install the necessary NPM packages:
 
 ```bash
-git remote add upstream git@github.com:fastapi/full-stack-fastapi-template.git
+npm install
 ```
 
-- Push the code to your new repository:
+* And start the live server with the following `npm` script:
 
 ```bash
-git push -u origin master
+npm run dev
 ```
 
-### Update From the Original Template
+* Then open your browser at http://localhost:3000/.
 
-After cloning the repository, and after doing changes, you might want to get the latest changes from this original template.
+Notice that this live server is not running inside Docker, it's for local development, and that is the recommended workflow. Once you are happy with your frontend, you can build the frontend Docker image and start it, to test it in a production-like environment. But building the image at every change will not be as productive as running the local development server with live reload.
 
-- Make sure you added the original repository as a remote, you can check it with:
+Check the file `package.json` to see other available options.
+
+### Technology Stack
+
+This Next.js frontend uses:
+
+- **Next.js 15** with App Router for the React framework
+- **Tailwind CSS v4** for styling with modern CSS features
+- **shadcn/ui** for beautiful, accessible UI components
+- **Lucide React** for consistent iconography
+- **TanStack Query** for server state management
+- **TypeScript** for type safety
+- **Generated API Client** for backend integration
+
+### Removing the frontend
+
+If you are developing an API-only app and want to remove the frontend, you can do it easily:
+
+* Remove the `./frontend-nextjs` directory.
+
+* In the `docker-compose.yml` file, remove the whole service / section `frontend-nextjs`.
+
+* In the `docker-compose.override.yml` file, remove the whole service / section `frontend-nextjs`.
+
+Done, you have a frontend-less (api-only) app. 🤓
+
+---
+
+If you want, you can also remove the `FRONTEND` environment variables from:
+
+* `.env`
+* `./scripts/*.sh`
+
+But it would be only to clean them up, leaving them won't really have any effect either way.
+
+## Generate Client
+
+### Automatically
+
+* Activate the backend virtual environment.
+* From the top level project directory, run the script:
 
 ```bash
-git remote -v
-
-origin    git@github.com:octocat/my-full-stack.git (fetch)
-origin    git@github.com:octocat/my-full-stack.git (push)
-upstream    git@github.com:fastapi/full-stack-fastapi-template.git (fetch)
-upstream    git@github.com:fastapi/full-stack-fastapi-template.git (push)
+./scripts/generate-client.sh
 ```
 
-- Pull the latest changes without merging:
+* Commit the changes.
+
+### Manually
+
+* Start the Docker Compose stack.
+
+* Download the OpenAPI JSON file from `http://localhost/api/v1/openapi.json` and copy it to a new file `openapi.json` at the root of the `frontend-nextjs` directory.
+
+* To generate the frontend client, run:
 
 ```bash
-git pull --no-commit upstream master
+npm run generate-client
 ```
 
-This will download the latest changes from this template without committing them, that way you can check everything is right before committing.
+* Commit the changes.
 
-- If there are conflicts, solve them in your editor.
+## Features
 
-- Once you are done, commit the changes:
+This Next.js frontend includes:
 
-```bash
-git merge --continue
+- **Authentication**: JWT-based authentication with login/logout functionality
+- **Dashboard**: Modern dashboard with sidebar navigation
+- **User Management**: User profile and settings management
+- **Responsive Design**: Mobile-first responsive design with dark mode support
+- **Type Safety**: Full TypeScript integration with generated API types
+- **Modern UI**: Beautiful components built with shadcn/ui and Tailwind CSS
+
+## Project Structure
+
 ```
-
-### Configure
-
-You can then update configs in the `.env` files to customize your configurations.
-
-Before deploying it, make sure you change at least the values for:
-
-- `SECRET_KEY`
-- `FIRST_SUPERUSER_PASSWORD`
-- `POSTGRES_PASSWORD`
-
-You can (and should) pass these as environment variables from secrets.
-
-Read the [deployment.md](./deployment.md) docs for more details.
-
-### Generate Secret Keys
-
-Some environment variables in the `.env` file have a default value of `changethis`.
-
-You have to change them with a secret key, to generate secret keys you can run the following command:
-
-```bash
-python -c "import secrets; print(secrets.token_urlsafe(32))"
+frontend-nextjs/
+├── app/                    # Next.js App Router pages
+├── components/             # Reusable React components
+│   └── ui/                # shadcn/ui components
+├── lib/                   # Utility functions and configurations
+├── hooks/                 # Custom React hooks
+├── client/                # Generated API client
+├── public/                # Static assets
+└── styles/                # Global styles and Tailwind config
 ```
-
-Copy the content and use that as password / secret key. And run that again to generate another secure key.
-
-## How To Use It - Alternative With Copier
-
-This repository also supports generating a new project using [Copier](https://copier.readthedocs.io).
-
-It will copy all the files, ask you configuration questions, and update the `.env` files with your answers.
-
-### Install Copier
-
-You can install Copier with:
-
-```bash
-pip install copier
-```
-
-Or better, if you have [`pipx`](https://pipx.pypa.io/), you can run it with:
-
-```bash
-pipx install copier
-```
-
-**Note**: If you have `pipx`, installing copier is optional, you could run it directly.
-
-### Generate a Project With Copier
-
-Decide a name for your new project's directory, you will use it below. For example, `my-awesome-project`.
-
-Go to the directory that will be the parent of your project, and run the command with your project's name:
-
-```bash
-copier copy https://github.com/fastapi/full-stack-fastapi-template my-awesome-project --trust
-```
-
-If you have `pipx` and you didn't install `copier`, you can run it directly:
-
-```bash
-pipx run copier copy https://github.com/fastapi/full-stack-fastapi-template my-awesome-project --trust
-```
-
-**Note** the `--trust` option is necessary to be able to execute a [post-creation script](https://github.com/fastapi/full-stack-fastapi-template/blob/master/.copier/update_dotenv.py) that updates your `.env` files.
-
-### Input Variables
-
-Copier will ask you for some data, you might want to have at hand before generating the project.
-
-But don't worry, you can just update any of that in the `.env` files afterwards.
-
-The input variables, with their default values (some auto generated) are:
-
-- `project_name`: (default: `"FastAPI Project"`) The name of the project, shown to API users (in .env).
-- `stack_name`: (default: `"fastapi-project"`) The name of the stack used for Docker Compose labels and project name (no spaces, no periods) (in .env).
-- `secret_key`: (default: `"changethis"`) The secret key for the project, used for security, stored in .env, you can generate one with the method above.
-- `first_superuser`: (default: `"admin@example.com"`) The email of the first superuser (in .env).
-- `first_superuser_password`: (default: `"changethis"`) The password of the first superuser (in .env).
-- `smtp_host`: (default: "") The SMTP server host to send emails, you can set it later in .env.
-- `smtp_user`: (default: "") The SMTP server user to send emails, you can set it later in .env.
-- `smtp_password`: (default: "") The SMTP server password to send emails, you can set it later in .env.
-- `emails_from_email`: (default: `"info@example.com"`) The email account to send emails from, you can set it later in .env.
-- `postgres_password`: (default: `"changethis"`) The password for the PostgreSQL database, stored in .env, you can generate one with the method above.
-- `sentry_dsn`: (default: "") The DSN for Sentry, if you are using it, you can set it later in .env.
-
-## Backend Development
-
-Backend docs: [backend/README.md](./backend/README.md).
-
-## Frontend Development
-
-Frontend docs: [frontend/README.md](./frontend/README.md).
-
-## Deployment
-
-Deployment docs: [deployment.md](./deployment.md).
 
 ## Development
 
-General development docs: [development.md](./development.md).
+### Adding New Components
 
-This includes using Docker Compose, custom local domains, `.env` configurations, etc.
+To add new shadcn/ui components:
 
-## Release Notes
+```bash
+npx shadcn@latest add [component-name]
+```
 
-Check the file [release-notes.md](./release-notes.md).
+### Building for Production
 
-## License
+```bash
+npm run build
+```
 
-The Full Stack FastAPI Template is licensed under the terms of the MIT license.
+### Running Tests
+
+```bash
+npm run test
+```
+
+## Docker
+
+The frontend is containerized and can be run with Docker:
+
+```bash
+# Build the image
+docker build -t frontend-nextjs .
+
+# Run the container
+docker run -p 3000:3000 frontend-nextjs
+```
+
+Or use the provided Docker Compose setup from the project root.
