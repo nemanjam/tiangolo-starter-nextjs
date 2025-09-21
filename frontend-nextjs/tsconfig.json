@@ -1,6 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2020",
+    "strict": true,
+    "baseUrl": ".",
+      "paths": {
+        "@/*": ["src/*"],
+      },
     "useDefineForClassFields": true,
     "lib": [
       "ES2020",
@@ -9,6 +14,7 @@
     ],
     "module": "ESNext",
     "skipLibCheck": true,
+
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
@@ -16,16 +22,11 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
+
     /* Linting */
-    "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    },
     "allowJs": true,
     "incremental": true,
     "esModuleInterop": true,
@@ -38,7 +39,9 @@
   "include": [
     "playwright.config.ts",
     "src/**/*.ts",
+    "src/**/*.tsx",
     "tests/**/*.ts",
+    "tests/**/*.tsx",
     ".next/types/**/*.ts"
   ],
   "references": [
